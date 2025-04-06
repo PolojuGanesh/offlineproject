@@ -1,0 +1,45 @@
+.home-main-container {
+  background-size: cover;
+  padding-left: 2%;
+  padding-right: 2%;
+}
+
+.home-main-heading {
+  font-family: "Roboto";
+  font-size: 28px;
+  color: #000000;
+  font-weight: bold;
+}
+
+.input-and-add-button-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.input-field {
+  border: 1px solid gray;
+  outline: none;
+  color: #000000;
+  padding: 12px;
+  border-radius: 10px;
+  margin-right: 1%;
+  width: 80%;
+  flex-grow: 1;
+}
+
+.add-task-button {
+  background-color: blueviolet;
+  border-width: 0px;
+  font-family: "Roboto";
+  padding: 12px;
+  color: #ffffff;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.task-ul-container {
+  padding-left: 0px;
+  list-style-type: none;
+}

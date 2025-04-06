@@ -1,0 +1,45 @@
+.each-task-list-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  border: 1px solid gray;
+  padding: 7px;
+  border-radius: 10px;
+  margin-bottom: 10px;
+}
+
+.checkbox-and-label-container {
+}
+
+.checkbox {
+  height: 17px;
+  width: 17px;
+}
+
+.task-label {
+  font-family: "Roboto";
+  font-size: 20px;
+  color: gray;
+  font-weight: bold;
+  margin-left: 10px;
+}
+
+.delete-button {
+  background-color: transparent;
+  border: 1px solid gray;
+  font-family: "Roboto";
+  padding: 7px;
+  color: #000000;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.checked {
+  text-decoration:underline;
+  font-family: "Roboto";
+  font-size: 20px;
+  color: gray;
+  font-weight: bold;
+  margin-left: 10px;
+}
