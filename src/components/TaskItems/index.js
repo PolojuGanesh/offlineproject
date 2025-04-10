@@ -1,17 +1,15 @@
 import "./index.css";
 
 const TaskItems = (props) => {
-  const { eachTask, deletingTask } = props;
-  const { task, id } = eachTask;
+  const { eachTask, deletingTask, changeStatusOfTask } = props;
+  const { task, id, status } = eachTask;
 
   const clickOnDelete = () => {
     deletingTask(id);
   };
 
-  let checked;
-
-  const clickOnCheckbox = (clickId) => {
-    checked = clickId === id;
+  const clickOnCheckbox = (id) => {
+    changeStatusOfTask(id)
   };
 
   return (
@@ -22,8 +20,9 @@ const TaskItems = (props) => {
           id={id}
           type="checkbox"
           className="checkbox"
+          checked = {status}
         />
-        <label htmlFor={id} className={checked ? "checked" : "task-label"}>
+        <label htmlFor={id} className={status ? "checked" : "task-label"}>
           {task}
         </label>
       </div>

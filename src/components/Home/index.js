@@ -1,4 +1,5 @@
 import { Component } from "react";
+import { v4 as uuidv4 } from "uuid";
 import TaskItems from "../TaskItems";
 
 import "./index.css";
@@ -7,17 +8,24 @@ import "./index.css";
 class Home extends Component {
   state = {
     userText: "",
-    taskList: [
-      { id: 0, task: "Html" },
-      { id: 1, task: "CSS" },
-    ],
+    taskList: [],
   };
+
+  componentDidMount() {
+    const taskListData = JSON.parse(localStorage.getItem("taskList"))
+    this.setState({taskList: taskListData})
+  }
+
+  componentDidUpdate() {
+    const {taskList} = this.state
+    localStorage.setItem("taskList", JSON.stringify(taskList))
+  }
 
   clickOnAddTask = () => {
     const { userText } = this.state;
-    const newTask = { id: userText.length + 1, task: userText };
+    const newTask = { id: uuidv4(), task: userText, status: false };
     if (userText !== "") {
-      this.setState((prev) => ({ taskList: [...prev.taskList, newTask] }));
+      this.setState((prev) => ({ taskList: [...prev.taskList, newTask], userText: "" }));
     } else {
       alert("Enter Task");
     }
@@ -32,6 +40,12 @@ class Home extends Component {
     let filteredList = taskList.filter((each) => each.id !== id);
     this.setState({ taskList: filteredList });
   };
+
+  changeStatusOfTask = (id) => {
+    this.setState(prev => ({
+      taskList: prev.taskList.map(each => each.id === id ? {...each, status: !each.status} : each)
+    }))
+  }
 
   render() {
     const { taskList, userText } = this.state;
@@ -55,15 +69,17 @@ class Home extends Component {
             Add Task
           </button>
         </div>
+        { taskList.length <= 0 ? <p className="add-your-task-heading">Add Your Task</p> :
         <ul className="task-ul-container">
           {taskList.map((eachTask) => (
             <TaskItems
               key={eachTask.id}
               eachTask={eachTask}
               deletingTask={this.deletingTask}
+              changeStatusOfTask={this.changeStatusOfTask}
             />
           ))}
-        </ul>
+        </ul>}
       </div>
     );
   }
